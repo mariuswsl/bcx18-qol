@@ -81,7 +81,7 @@ mongodb.MongoClient.connect(process.env.MONGODB_URI, function (err, database) {
     app.post(route, function (req, res) {
         if (req.body.secret == secret) {
             console.log("Secret verified");
-            var document = {
+            let document = {
                 "date": Date.now(),
                 "data": {
                     "type": req.body.type,
@@ -121,10 +121,25 @@ mongodb.MongoClient.connect(process.env.MONGODB_URI, function (err, database) {
         res.status(200).send('Hello Leo!');
     });
 
-    app.post("/leo", function (req, res) {
-        console.log("LEO POST");
-        console.log("WITH BODY: ", req.body);
-        res.status(200).send({});
+    app.post("/xdkDevice/", function (req, res) {
+        console.log("Got xdkDeviceData with body: ", req.body);
+            // let document = {
+            //     "date": Date.now(),
+            //     "data": {
+            //         "type": req.body.type,
+            //         "apMac": req.body.data.apMac,
+            //         "observations": req.body.data.observations
+            //     }
+            // };
+            // cmxData(data);
+            // db.collection('wifiDevices').insertOne( document , function(err, doc) {
+            //     if (err) {
+            //         console.log('ERROR: Failed to save new wifiDevicesData');
+            //     } else {
+            //         console.log('Saved cmxreceiver input to DB');
+            //       // res.status(201).json(doc.ops[0]);
+            //     }
+            // });
     });
 
 
