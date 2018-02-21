@@ -104,6 +104,7 @@ mongodb.MongoClient.connect(process.env.MONGODB_URI, function (err, database) {
 
         } else {
             console.log("Secret was invalid");
+            console.log("HERE: ", req.body);
         }
         res.status(200);
     });
