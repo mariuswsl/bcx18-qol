@@ -60,7 +60,7 @@ mongodb.MongoClient.connect(process.env.MONGODB_URI, function (err, database) {
 
   // Save database object from the callback for reuse.
   db = database;
-  console.log("Database connection ready: ", db);
+  console.log("Database connection ready!");
 
   // // Initialize the app.
   // var server = app.listen(process.env.PORT || 8080, function () {
@@ -86,7 +86,7 @@ mongodb.MongoClient.connect(process.env.MONGODB_URI, function (err, database) {
                 "data": {
                     "type": req.body.type,
                     "apMac": req.body.data.apMac,
-                    "opservations": req.body.data.opservations
+                    "observations": req.body.data.observations
                 }
             };
             // cmxData(data);
