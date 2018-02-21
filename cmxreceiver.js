@@ -13,8 +13,8 @@ A basic web service to accept CMX data from a Cisco Meraki network
 
 // CHANGE THESE CONFIGURATIONS to match your CMX configuration
 var port = process.env.OVERRIDE_PORT || process.env.PORT || 1890;
-var secret = process.env.SECRET || "enterYourSecret";
-var validator = process.env.VALIDATOR || "enterYourValidator";
+var secret = process.env.SECRET || "testingSecret";
+var validator = process.env.VALIDATOR || "9954e8cc03bbd5063df927a1e76925e09a40c032";
 var route = process.env.ROUTE || "/cmx";
 
 // All CMX JSON data will end up here. Send it to a database or whatever you fancy.
@@ -26,7 +26,7 @@ function cmxData(data) {
 
 //**********************************************************
 
-// Express Server 
+// Express Server
 var express = require('express');
 var app = express();
 var bodyParser = require('body-parser')
