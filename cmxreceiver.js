@@ -82,11 +82,6 @@ mongodb.MongoClient.connect(process.env.MONGODB_URI, function (err, database) {
         if (req.body.secret == secret) {
             console.log("Secret verified");
             cmxData(req.body);
-            db.listCollections().toArray(function(err, collInfos) {
-                console.log('collInfos ', collInfos);
-                // collInfos is an array of collection info objects that look like:
-                // { name: 'test', options: {} }
-            });
             db.collection('wifiDevices').insertOne(data, function(err, doc) {
                 if (err) {
                   handleError(res, err.message, "Failed to create new contact.");
@@ -104,6 +99,11 @@ mongodb.MongoClient.connect(process.env.MONGODB_URI, function (err, database) {
 
     app.get("/", function (req, res) {
         console.log("HERE");
+        db.listCollections().toArray(function(err, collInfos) {
+                console.log('collInfos ', collInfos);
+                // collInfos is an array of collection info objects that look like:
+                // { name: 'test', options: {} }
+            });
         res.sendFile('app/index.html' , { root : __dirname});
     });
 
