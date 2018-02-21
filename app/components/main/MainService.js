@@ -6,7 +6,7 @@ AngularFrontend.service('MainService', function ($http, $base64, CONFIG, $log, $
 
     var req = {
       method: 'GET',
-      url: "http://localhost/leo",
+      url: "https://bcw-node.herokuapp.com/leo",
       headers: {
         'Content-Type': 'application/json',
       },
