@@ -118,14 +118,6 @@ mongodb.MongoClient.connect(process.env.MONGODB_URI, function (err, database) {
 
     app.get("/leo", function (req, res) {
         console.log("LEO GET");
-        db.collection('wifiDevices').find({}).toArray(function(err, docs) {
-            if (err) {
-              handleError(res, err.message, "Failed to get collection in DB.");
-            } else {
-              // res.status(200).json(docs);
-              console.log('Found collection in DB');
-            }
-          });
         res.status(200).send('Hello Leo!');
     });
 
@@ -147,6 +139,19 @@ mongodb.MongoClient.connect(process.env.MONGODB_URI, function (err, database) {
 
 
 
+
+    // Frontend Interface
+    app.get("/db/wifiDevices", function (req, res) {
+        console.log("Got request for wifiDevicesData...");
+        db.collection('wifiDevices').find({}).toArray(function(err, docs) {
+            if (err) {
+              console.log("Request for wifiDevicesData failed!", err);
+            } else {
+              res.status(200).json(docs);
+              console.log('Found wifiDevicesData documents in DB');
+            }
+          });
+    });
 
 
 
