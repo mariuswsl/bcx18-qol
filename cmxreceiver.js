@@ -20,7 +20,7 @@ var route = process.env.ROUTE || "/cmx";
 // All CMX JSON data will end up here. Send it to a database or whatever you fancy.
 // data format specifications: https://documentation.meraki.com/MR/Monitoring_and_Reporting/CMX_Analytics#Version_2.0
 function cmxData(data) {
-    console.log("JSON Feeda: " + JSON.stringify(data.data.location, null, 2));
+    console.log("JSON Feeda: " + JSON.stringify(data.data, null, 2));
 };
 
 
@@ -55,8 +55,7 @@ app.post(route, function (req, res) {
 
 app.get("/", function (req, res) {
     console.log("HERE");
-    console.log("__dirname: ", __dirname);
-    res.sendFile(path.join(__dirname + 'index.html'));
+    res.sendFile(path.join('index.html'));
 });
 
 
