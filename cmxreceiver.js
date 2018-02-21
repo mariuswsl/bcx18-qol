@@ -124,7 +124,7 @@ mongodb.MongoClient.connect(process.env.MONGODB_URI, function (err, database) {
         res.status(200).send('Hello Leo!');
     });
 
-    app.post("/xdkDevice/", bodyParser, function (req, res) {
+    app.post("/xdkDevice/", function (req, res) {
         console.log("Got xdkDeviceData: ");
         console.log(req);
         console.log("Got xdkDeviceData with body: ");
