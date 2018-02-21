@@ -7,10 +7,14 @@ function MainCtrl($scope, $compile, $log, $uibModal, $rootScope, $window, MainSe
 	var mainVM = this;
 
 	function init() {
-    MainService.restCall()
-      .then(function (result) {
-          $log.debug('result', result);
 
+    // Meraki
+    MainService.restCall('wifiDevices')
+      .then(function (result) {
+          $log.debug('wifiDevices result', result);
+
+
+          // Meraki
           let data                   = result.data,
               lastReceivedObject     = data.pop(),
               lastReceivedObjectData = lastReceivedObject.data;
@@ -24,6 +28,27 @@ function MainCtrl($scope, $compile, $log, $uibModal, $rootScope, $window, MainSe
           $log.debug(error);
         });
 
+
+
+    // Bosch XDK
+    MainService.restCall('xdkDeviceData')
+      .then(function (result) {
+          $log.debug('xdkDeviceData result', result);
+
+
+          // Meraki
+          let data                   = result.data;
+              // lastReceivedObject     = data.pop(),
+              // lastReceivedObjectData = lastReceivedObject.data;
+              // devicesCount           = lastReceivedObjectData.observations.length;
+
+          // $scope.devicesCount = devicesCount;
+
+        },
+        function (error) {
+          $log.debug("Failed rest call, with error:");
+          $log.debug(error);
+        });
   };
 
   init();

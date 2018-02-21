@@ -170,6 +170,19 @@ mongodb.MongoClient.connect(process.env.MONGODB_URI, function (err, database) {
     });
 
 
+    app.get("/db/xdkDeviceData", function (req, res) {
+        console.log("Got request for xdkDeviceData...");
+        db.collection('xdkDeviceData').find({}).toArray(function(err, docs) {
+            if (err) {
+              console.log("Request for xdkDeviceData failed!", err);
+            } else {
+              res.status(200).json(docs);
+              console.log('Found xdkDeviceData documents in DB');
+            }
+          });
+    });
+
+
 
 });
 

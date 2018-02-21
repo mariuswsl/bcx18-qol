@@ -2,11 +2,11 @@ AngularFrontend.service('MainService', function ($http, $base64, CONFIG, $log, $
 
 	var MainService = {};
 
-  MainService.restCall = function () {
+  MainService.restCall = function (collection) {
 
     var req = {
       method: 'GET',
-      url: "https://bcw-node.herokuapp.com/db/wifiDevices",
+      url: "https://bcw-node.herokuapp.com/db/" + collection,
       headers: {
         'Content-Type': 'application/json',
       },
