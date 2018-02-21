@@ -31,7 +31,7 @@ function cmxData(data) {
 // Express Server
 var express = require('express');
 var app = express();
-var bodyParser = require('body-parser')
+var bodyParser = require('body-parser');
 var mongodb = require("mongodb");
 var ObjectID = mongodb.ObjectID;
 
