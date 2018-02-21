@@ -37,7 +37,7 @@ var ObjectID = mongodb.ObjectID;
 
 
 app.use(bodyParser({limit: '50mb'}));
-app.use(bodyParser.json())
+// app.use(bodyParser.json())
 
 
 app.use(express.static(path.join(__dirname)));
@@ -80,7 +80,7 @@ mongodb.MongoClient.connect(process.env.MONGODB_URI, function (err, database) {
     // Getting the flow of data every 1 to 2 minutes
     app.post(route, function (req, res) {
         if (req.body.secret == secret) {
-            console.log("Secret verified");
+            console.log("Secret verified with req.body.data: ", req.body);
             let document = {
                 "date": Date.now(),
                 "data": {
