@@ -14,7 +14,7 @@ function MainCtrl($scope, $compile, $log, $uibModal, $rootScope, $window, MainSe
           let data                   = result.data,
               lastReceivedObject     = data.pop(),
               lastReceivedObjectData = lastReceivedObject.data;
-              devicesCount           = lastReceivedDataobject.observations.length;
+              devicesCount           = lastReceivedObjectData.observations.length;
 
           $scope.devicesCount = devicesCount;
 
