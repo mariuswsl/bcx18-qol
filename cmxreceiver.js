@@ -52,7 +52,24 @@ app.post(route, function (req, res) {
     res.status(200);
 });
 
+
+app.get("/", function (req, res) {
+    console.log("HERE");
+    console.log("__dirname: ", __dirname);
+    res.sendFile(path.join(__dirname + 'index.html'));
+});
+
+
+
+
 // Start server
 app.listen(port, function () {
     console.log("CMX Receiver listening on port: " + port);
 });
+
+
+
+
+
+
+
