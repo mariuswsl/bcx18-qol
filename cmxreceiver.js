@@ -35,6 +35,19 @@ var bodyParser = require('body-parser');
 var mongodb = require("mongodb");
 var ObjectID = mongodb.ObjectID;
 
+
+app.use(bodyParser({limit: '50mb'}));
+app.use(bodyParser.json())
+
+
+app.use(express.static(path.join(__dirname)));
+app.use("/bower_components", express.static(__dirname + '/bower_components'));
+app.use("/assets", express.static(__dirname + '/assets'));
+app.use("/components", express.static(__dirname + '/components'));
+app.use("/common", express.static(__dirname + '/scripts'));
+
+app.use("/", express.static('app/' , { root : __dirname}));
+
 // Create a database variable outside of the database connection callback to reuse the connection pool in your app.
 var db;
 
@@ -49,78 +62,70 @@ mongodb.MongoClient.connect(process.env.MONGODB_URI, function (err, database) {
   db = database;
   console.log("Database connection ready");
 
-  // Initialize the app.
-  var server = app.listen(process.env.PORT || 8080, function () {
-    var port = server.address().port;
-    console.log("App now running on port", port);
-  });
+  // // Initialize the app.
+  // var server = app.listen(process.env.PORT || 8080, function () {
+  //   var port = server.address().port;
+  //   console.log("App now running on port", port);
+  // });
+
+
+    // CMX Location Protocol, see https://documentation.meraki.com/MR/Monitoring_and_Reporting/CMX_Analytics#API_Configuration
+    //
+    // Meraki asks for us to know the secret
+    app.get(route, function (req, res) {
+        console.log("Validator = " + validator);
+        res.status(200).send(validator);
+    });
+    //
+    // Getting the flow of data every 1 to 2 minutes
+    app.post(route, function (req, res) {
+        if (req.body.secret == secret) {
+            console.log("Secret verified");
+            cmxData(req.body);
+        } else {
+            console.log("Secret was invalid");
+        }
+        res.status(200);
+    });
+
+
+    app.get("/", function (req, res) {
+        console.log("HERE");
+        res.sendFile('app/index.html' , { root : __dirname});
+    });
+
+
+
+
+
+
+
+    app.get("/leo", function (req, res) {
+        console.log("LEO GET");
+        res.status(200).send('Hello Leo!');
+    });
+
+    app.post("/leo", function (req, res) {
+        console.log("LEO POST");
+        console.log("WITH BODY: ", req.body);
+        res.status(200).send({});
+    });
+
+
+
+
+    // Start server
+    app.listen(port, function () {
+        console.log("CMX Receiver listening on port: " + port);
+    });
+
+
+
+
+
+
+
+
 });
-
-app.use(bodyParser({limit: '50mb'}));
-app.use(bodyParser.json())
-
-
-app.use(express.static(path.join(__dirname)));
-app.use("/bower_components", express.static(__dirname + '/bower_components'));
-app.use("/assets", express.static(__dirname + '/assets'));
-app.use("/components", express.static(__dirname + '/components'));
-app.use("/common", express.static(__dirname + '/scripts'));
-
-app.use("/", express.static('app/' , { root : __dirname}));
-
-// CMX Location Protocol, see https://documentation.meraki.com/MR/Monitoring_and_Reporting/CMX_Analytics#API_Configuration
-//
-// Meraki asks for us to know the secret
-app.get(route, function (req, res) {
-    console.log("Validator = " + validator);
-    res.status(200).send(validator);
-});
-//
-// Getting the flow of data every 1 to 2 minutes
-app.post(route, function (req, res) {
-    if (req.body.secret == secret) {
-        console.log("Secret verified");
-        cmxData(req.body);
-    } else {
-        console.log("Secret was invalid");
-    }
-    res.status(200);
-});
-
-
-app.get("/", function (req, res) {
-    console.log("HERE");
-    res.sendFile('app/index.html' , { root : __dirname});
-});
-
-
-
-
-
-
-
-app.get("/leo", function (req, res) {
-    console.log("LEO GET");
-    res.status(200).send('Hello Leo!');
-});
-
-app.post("/leo", function (req, res) {
-    console.log("LEO POST");
-    console.log("WITH BODY: ", req.body);
-    res.status(200).send({});
-});
-
-
-
-
-// Start server
-app.listen(port, function () {
-    console.log("CMX Receiver listening on port: " + port);
-});
-
-
-
-
-
 
 
