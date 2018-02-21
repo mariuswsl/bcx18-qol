@@ -82,6 +82,7 @@ mongodb.MongoClient.connect(process.env.MONGODB_URI, function (err, database) {
         if (req.body.secret == secret) {
             console.log("Secret verified");
             var data = req.body.data;
+            console.log('HERE :', req.body.data);
             // cmxData(data);
             db.collection('wifiDevices').insertOne(data, function(err, doc) {
                 if (err) {
