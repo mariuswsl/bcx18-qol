@@ -83,7 +83,11 @@ mongodb.MongoClient.connect(process.env.MONGODB_URI, function (err, database) {
             console.log("Secret verified");
             var document = {
                 "date": Date.now(),
-                "data": req.body
+                "data": {
+                    "type": req.body.type,
+                    "apMac": req.body.data.apMac,
+                    "opservations": req.body.data.opservations
+                }
             };
             // cmxData(data);
             db.collection('wifiDevices').insertOne( document , function(err, doc) {
