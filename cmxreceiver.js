@@ -82,8 +82,8 @@ mongodb.MongoClient.connect(process.env.MONGODB_URI, function (err, database) {
         if (req.body.secret == secret) {
             console.log("Secret verified");
             var document = {
-                "date": Date.now(),
-                "data": req.body
+                "date": 'Date.now()',
+                "data": 'req.body'
             };
             console.log('HERE :', document);
             // cmxData(data);
