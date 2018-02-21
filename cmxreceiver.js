@@ -109,17 +109,12 @@ mongodb.MongoClient.connect(process.env.MONGODB_URI, function (err, database) {
 
     app.get("/leo", function (req, res) {
         console.log("LEO GET");
-        db.listCollections().toArray(function(err, collInfos) {
-                console.log('collInfos ', collInfos);
-                // collInfos is an array of collection info objects that look like:
-                // { name: 'test', options: {} }
-            });
         db.collection('wifiDevices').find({}).toArray(function(err, docs) {
             if (err) {
-              handleError(res, err.message, "Failed to get documents in DB.");
+              handleError(res, err.message, "Failed to get collection in DB.");
             } else {
               // res.status(200).json(docs);
-              console.log('Found documents in DB');
+              console.log('Found collection in DB');
             }
           });
         res.status(200).send('Hello Leo!');
