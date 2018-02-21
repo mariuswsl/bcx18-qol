@@ -31,14 +31,14 @@ function cmxData(data) {
 // Express Server
 var express = require('express');
 var app = express();
-var bodyParser = require('body-parser');
+// var bodyParser = require('body-parser');
 var mongodb = require("mongodb");
 var ObjectID = mongodb.ObjectID;
 
-app.use(bodyParser.urlencoded({
-    extended: true
-}));
-app.use(bodyParser.json());
+// app.use(bodyParser.urlencoded({
+//     extended: true
+// }));
+// app.use(bodyParser.json());
 // app.use(bodyParser({limit: '50mb'}));
 
 
@@ -125,8 +125,10 @@ mongodb.MongoClient.connect(process.env.MONGODB_URI, function (err, database) {
     });
 
     app.post("/xdkDevice/", function (req, res) {
-        console.log("Got xdkDeviceData with body: ");
+        console.log("Got xdkDeviceData: ");
         console.log(req);
+        console.log("Got xdkDeviceData with body: ");
+        console.log(req.body);
         res.status(200).send('Merci, du Mieses...');
             // let document = {
             //     "date": Date.now(),
