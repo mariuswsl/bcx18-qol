@@ -114,7 +114,7 @@ mongodb.MongoClient.connect(process.env.MONGODB_URI, function (err, database) {
                 // collInfos is an array of collection info objects that look like:
                 // { name: 'test', options: {} }
             });
-        db.collection(wifiDevices).find({}).toArray(function(err, docs) {
+        db.collection('wifiDevices').find({}).toArray(function(err, docs) {
             if (err) {
               handleError(res, err.message, "Failed to get documents in DB.");
             } else {
