@@ -35,6 +35,13 @@ var bodyParser = require('body-parser')
 app.use(bodyParser({limit: '50mb'}));
 app.use(bodyParser.json())
 
+
+app.use(express.static(path.join(__dirname)));
+app.use("/bower_components", express.static(__dirname + '/bower_components'));
+app.use("/assets", express.static(__dirname + '/assets'));
+app.use("/components", express.static(__dirname + '/components'));
+app.use("/common", express.static(__dirname + '/scripts'));
+
 // CMX Location Protocol, see https://documentation.meraki.com/MR/Monitoring_and_Reporting/CMX_Analytics#API_Configuration
 //
 // Meraki asks for us to know the secret
