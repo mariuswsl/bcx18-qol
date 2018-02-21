@@ -58,7 +58,8 @@ app.post(route, function (req, res) {
 app.get("/", function (req, res) {
     console.log("HERE");
     console.log("path: ", path);
-    res.sendFile(path.join(__dirname, '../', 'index.html'));
+    console.log("__dirname: ", __dirname);
+    res.sendFile(path.join(__dirname, '/', 'index.html'));
 });
 
 
