@@ -61,6 +61,11 @@ app.get("/", function (req, res) {
 });
 
 
+
+
+
+
+
 app.get("/leo", function (req, res) {
     console.log("LEO GET");
     res.status(200);
@@ -68,6 +73,7 @@ app.get("/leo", function (req, res) {
 
 app.post("/leo", function (req, res) {
     console.log("LEO POST");
+    console.log("WITH BODY: ", req.body);
     res.status(200);
 });
 
