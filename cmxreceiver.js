@@ -90,8 +90,7 @@ mongodb.MongoClient.connect(process.env.MONGODB_URI, function (err, database) {
                 if (err) {
                     console.log('ERROR: Failed to save new wifiDevicesData');
                 } else {
-                    console.log('NICE:', doc);
-                    console.log('NICE^2! Saved to DB :', doc.ops[0]);
+                    console.log('Saved cmxreceiver input to DB');
                   // res.status(201).json(doc.ops[0]);
                 }
             });
