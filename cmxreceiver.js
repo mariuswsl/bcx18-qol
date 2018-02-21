@@ -58,7 +58,7 @@ app.post(route, function (req, res) {
 app.get("/", function (req, res) {
     console.log("HERE");
     console.log("__dirname: ", __dirname);
-    res.sendFile('https://bcw-node.herokuapp.com/app/index.html');
+    res.sendFile('app/index.html' , { root : __dirname});
 });
 
 
