@@ -83,7 +83,7 @@ mongodb.MongoClient.connect(process.env.MONGODB_URI, function (err, database) {
             console.log("Secret verified");
             var data = req.body;
             cmxData(data);
-            db.collection('wifiDevices').insertOne(data, function(err, doc) {
+            db.collection('wifiDevices').insertOne(JSON.stringify(data), function(err, doc) {
                 if (err) {
                     console.log('ERROR: Failed to save new wifiDevicesData');
                 } else {
