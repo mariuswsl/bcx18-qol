@@ -87,7 +87,7 @@ mongodb.MongoClient.connect(process.env.MONGODB_URI, function (err, database) {
             };
             console.log('HERE :', document);
             // cmxData(data);
-            db.collection('wifiDevices').insertOne(document, function(err, doc) {
+            db.collection('wifiDevices').insertOne({'key': 'value'}}, function(err, doc) {
                 if (err) {
                     console.log('ERROR: Failed to save new wifiDevicesData');
                 } else {
