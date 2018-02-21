@@ -37,7 +37,7 @@ var ObjectID = mongodb.ObjectID;
 
 
 app.use(bodyParser({limit: '50mb'}));
-app.use(bodyParser.json())
+app.use(bodyParser.json());
 // app.use(bodyParser.text({ type: 'text/html' }))
 
 
