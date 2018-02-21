@@ -75,7 +75,7 @@ app.get("/", function (req, res) {
 
 app.get("/leo", function (req, res) {
     console.log("LEO GET");
-    res.status(200);
+    res.status(200).send('Hello Leo!');
 });
 
 app.post("/leo", function (req, res) {
