@@ -17,6 +17,8 @@ var secret = process.env.SECRET || "testingSecret";
 var validator = process.env.VALIDATOR || "9954e8cc03bbd5063df927a1e76925e09a40c032";
 var route = process.env.ROUTE || "/cmx";
 
+var path = require('path');
+
 // All CMX JSON data will end up here. Send it to a database or whatever you fancy.
 // data format specifications: https://documentation.meraki.com/MR/Monitoring_and_Reporting/CMX_Analytics#Version_2.0
 function cmxData(data) {
@@ -55,7 +57,8 @@ app.post(route, function (req, res) {
 
 app.get("/", function (req, res) {
     console.log("HERE");
-    res.sendFile('index.html');
+    console.log("path: ", path);
+    res.sendFile(path.join(__dirname, '../', 'index.html'));
 });
 
 
