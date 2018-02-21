@@ -22,7 +22,7 @@ var path = require('path');
 // All CMX JSON data will end up here. Send it to a database or whatever you fancy.
 // data format specifications: https://documentation.meraki.com/MR/Monitoring_and_Reporting/CMX_Analytics#Version_2.0
 function cmxData(data) {
-    console.log("JSON Feeda: " + JSON.stringify(data.data, null, 2));
+    // console.log("JSON Feeda: " + JSON.stringify(data.data, null, 2));
 };
 
 
@@ -84,9 +84,10 @@ mongodb.MongoClient.connect(process.env.MONGODB_URI, function (err, database) {
             cmxData(req.body);
             db.collection('wifiDevices').insertOne(data, function(err, doc) {
                 if (err) {
-                  handleError(res, err.message, "Failed to create new contact.");
+                    console.log('ERROR: Failed to save new wifiDevicesData');
                 } else {
-                  res.status(201).json(doc.ops[0]);
+                    console.log('NICE! Saved to DB');
+                  // res.status(201).json(doc.ops[0]);
                 }
             });
 
