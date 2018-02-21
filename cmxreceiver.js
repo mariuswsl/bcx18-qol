@@ -55,7 +55,7 @@ app.post(route, function (req, res) {
 
 app.get("/", function (req, res) {
     console.log("HERE");
-    res.sendFile(path.join('index.html'));
+    res.sendFile('index.html');
 });
 
 
