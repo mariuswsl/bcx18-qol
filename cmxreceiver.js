@@ -20,7 +20,7 @@ var route = process.env.ROUTE || "/cmx";
 // All CMX JSON data will end up here. Send it to a database or whatever you fancy.
 // data format specifications: https://documentation.meraki.com/MR/Monitoring_and_Reporting/CMX_Analytics#Version_2.0
 function cmxData(data) {
-    console.log("JSON Feed: " + JSON.stringify(data.type, null, 2));
+    console.log("JSON Feed: " + JSON.stringify(data, null, 2));
 };
 
 
