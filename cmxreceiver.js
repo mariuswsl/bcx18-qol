@@ -91,7 +91,8 @@ mongodb.MongoClient.connect(process.env.MONGODB_URI, function (err, database) {
                 if (err) {
                     console.log('ERROR: Failed to save new wifiDevicesData');
                 } else {
-                    console.log('NICE! Saved to DB');
+                    console.log('NICE:', doc);
+                    console.log('NICE^2! Saved to DB :', doc.ops[0]);
                   // res.status(201).json(doc.ops[0]);
                 }
             });
