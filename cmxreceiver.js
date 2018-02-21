@@ -82,12 +82,11 @@ mongodb.MongoClient.connect(process.env.MONGODB_URI, function (err, database) {
         if (req.body.secret == secret) {
             console.log("Secret verified");
             var document = {
-                "date": 'Date.now()',
-                "data": 'req.body'
+                "date": Date.now(),
+                "data": req.body
             };
-            console.log('HERE :', document);
             // cmxData(data);
-            db.collection('wifiDevices').insertOne( {'key': 'value'}, function(err, doc) {
+            db.collection('wifiDevices').insertOne( document , function(err, doc) {
                 if (err) {
                     console.log('ERROR: Failed to save new wifiDevicesData');
                 } else {
