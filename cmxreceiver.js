@@ -59,7 +59,7 @@ app.get("/", function (req, res) {
     console.log("HERE");
     console.log("path: ", path);
     console.log("__dirname: ", __dirname);
-    res.sendFile(path.join(__dirname, '/', 'index.html'));
+    res.sendFile(path.join(__dirname, 'index.html'));
 });
 
 
