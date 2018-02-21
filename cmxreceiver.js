@@ -98,12 +98,6 @@ mongodb.MongoClient.connect(process.env.MONGODB_URI, function (err, database) {
 
 
     app.get("/", function (req, res) {
-        console.log("HERE");
-        db.listCollections().toArray(function(err, collInfos) {
-                console.log('collInfos ', collInfos);
-                // collInfos is an array of collection info objects that look like:
-                // { name: 'test', options: {} }
-            });
         res.sendFile('app/index.html' , { root : __dirname});
     });
 
@@ -115,6 +109,11 @@ mongodb.MongoClient.connect(process.env.MONGODB_URI, function (err, database) {
 
     app.get("/leo", function (req, res) {
         console.log("LEO GET");
+        db.listCollections().toArray(function(err, collInfos) {
+                console.log('collInfos ', collInfos);
+                // collInfos is an array of collection info objects that look like:
+                // { name: 'test', options: {} }
+            });
         res.status(200).send('Hello Leo!');
     });
 
