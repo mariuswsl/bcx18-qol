@@ -83,7 +83,7 @@ app.get("/leo", function (req, res) {
 app.post("/leo", function (req, res) {
     console.log("LEO POST");
     console.log("WITH BODY: ", req.body);
-    res.status(200);
+    res.status(200).send({});
 });
 
 

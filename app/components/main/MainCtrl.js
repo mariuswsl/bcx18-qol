@@ -6,6 +6,17 @@ function MainCtrl($scope, $compile, $log, $uibModal, $rootScope, $window, MainSe
 	// ------------------
 	var mainVM = this;
 
-	function init() {};
+	function init() {
+    MainService.restCall()
+      .then(function (result) {
+          $log.debug('result', result);
+        },
+        function (error) {
+          $log.debug("Failed rest call, with error:");
+          $log.debug(error);
+        });
 
+  };
+
+  init();
 };
