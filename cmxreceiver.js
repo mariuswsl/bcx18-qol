@@ -35,6 +35,7 @@ var bodyParser = require('body-parser');
 var mongodb = require("mongodb");
 var ObjectID = mongodb.ObjectID;
 
+app.use(bodyParser.urlencoded());
 app.use(bodyParser.json());
 app.use(bodyParser({limit: '50mb'}));
 
