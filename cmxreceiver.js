@@ -42,6 +42,8 @@ app.use("/assets", express.static(__dirname + '/assets'));
 app.use("/components", express.static(__dirname + '/components'));
 app.use("/common", express.static(__dirname + '/scripts'));
 
+app.use("/", express.static('app/' , { root : __dirname}));
+
 // CMX Location Protocol, see https://documentation.meraki.com/MR/Monitoring_and_Reporting/CMX_Analytics#API_Configuration
 //
 // Meraki asks for us to know the secret
