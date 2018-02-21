@@ -35,10 +35,9 @@ var bodyParser = require('body-parser');
 var mongodb = require("mongodb");
 var ObjectID = mongodb.ObjectID;
 
-
-app.use(bodyParser({limit: '50mb'}));
 app.use(bodyParser.json());
-// app.use(bodyParser.text({ type: 'text/html' }))
+app.use(bodyParser({limit: '50mb'}));
+
 
 
 app.use(express.static(path.join(__dirname)));
