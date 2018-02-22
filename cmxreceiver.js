@@ -17,10 +17,6 @@ var secret = process.env.SECRET || "testingSecret";
 var validator = process.env.VALIDATOR || "9954e8cc03bbd5063df927a1e76925e09a40c032";
 var route = process.env.ROUTE || "/cmx";
 
-
-const util = require('util');
-const setTimeoutPromise = util.promisify(setTimeout);
-
 var path = require('path');
 
 // All CMX JSON data will end up here. Send it to a database or whatever you fancy.
@@ -110,10 +106,7 @@ mongodb.MongoClient.connect(process.env.MONGODB_URI, function (err, database) {
             // });
 
         } else {
-            setTimeoutPromise(40).then(() => {
-                console.log("Secret was invalid");
-                console.log("HERE: ", req.body);
-            });
+            console.log("Secret was invalid");
         }
         res.status(200);
     });
@@ -136,7 +129,7 @@ mongodb.MongoClient.connect(process.env.MONGODB_URI, function (err, database) {
 
     app.post("/xdkDevice/", function (req, res) {
         console.log("Got xdkDeviceData with body: ", req.body);
-        var jsonString = JSON.stringify(eval('(' + req.body +')'));
+        var jsonString = req.body.toString();
         console.log("1: ", jsonString);
         let xdkDeviceData = JSON.parse(jsonString); // {e.g. bme280_hum: 22206, bme280_press: 290536, bme280_temp: 528048 }
         console.log("2: ", xdkDeviceData);
