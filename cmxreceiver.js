@@ -96,12 +96,12 @@ mongodb.MongoClient.connect(process.env.MONGODB_URI, function (err, database) {
 
                 for(var j = 0; j < receivedDataArray.length; j++) {
                     if (curObject.clientMac === receivedDataArray[j].clientMac && curObject.location.unc <= receivedDataArray[j].location.unc) {
-                        checkedReceivedDataArray.add(curObject);
+                        checkedReceivedDataArray.push(curObject);
                     } else {
-                        checkedReceivedDataArray.add(receivedDataArray[j]);
+                        checkedReceivedDataArray.push(receivedDataArray[j]);
                     }
 
-                    if (j === receivedDataArray.length-1) checkedReceivedDataArray.add(curObject);
+                    if (j === receivedDataArray.length-1) checkedReceivedDataArray.push(curObject);
                 }
             }
 
