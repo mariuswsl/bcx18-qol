@@ -39,11 +39,12 @@ var bodyParser = require('body-parser');
 var mongodb = require("mongodb");
 var ObjectID = mongodb.ObjectID;
 
+
+app.use(bodyParser({limit: '50mb'}));
 app.use(bodyParser.urlencoded({
     extended: true
 }));
 app.use(bodyParser.json());
-app.use(bodyParser({limit: '50mb'}));
 
 
 
