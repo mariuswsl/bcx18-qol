@@ -139,10 +139,10 @@ mongodb.MongoClient.connect(process.env.MONGODB_URI, function (err, database) {
 
             db.collection('xdkDeviceData').insertOne( document , function(err, doc) {
                 if (err) {
-                    console.log('ERROR: Failed to save new wifiDevicesData');
+                    console.log('ERROR: Failed to save new xdkDeviceData');
                 } else {
-                    console.log('Saved cmxreceiver input to DB');
-                    res.status(200).json(doc.ops[0]);
+                    console.log('Saved xdkDeviceData input to DB');
+                    res.status(200).send('xdkDeviceData saved into DB.');
                 }
             });
         }
