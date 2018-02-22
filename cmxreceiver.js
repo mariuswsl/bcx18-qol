@@ -92,11 +92,12 @@ mongodb.MongoClient.connect(process.env.MONGODB_URI, function (err, database) {
 
             console.log("receivedDataArray.length: ", receivedDataArray.length);
 
+            for(var i in receivedDataArray){
+              console.log('key: ', i); // alerts key
+              console.log(receivedDataArray[i]); //alerts key's value
+            }
+
             for (var i = 0; i < receivedDataArray.length; i++) {
-                let curObject = receivedDataArray[i];
-                // if(curObject.location.length != null) {
-                    console.log('curObject.location.length ', curObject.location.length);
-                // }
 
                 // for(var j = 0; j < receivedDataArray.length; j++) {
 
