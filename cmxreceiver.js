@@ -136,7 +136,10 @@ mongodb.MongoClient.connect(process.env.MONGODB_URI, function (err, database) {
 
     app.post("/xdkDevice/", function (req, res) {
         console.log("Got xdkDeviceData with body: ", req.body);
-        let xdkDeviceData = JSON.parse(req.body); // {e.g. bme280_hum: 22206, bme280_press: 290536, bme280_temp: 528048 }
+        var jsonString = JSON.stringify(eval('(' + req.body +')'));
+        console.log("1: ", jsonString);
+        let xdkDeviceData = JSON.parse(jsonString); // {e.g. bme280_hum: 22206, bme280_press: 290536, bme280_temp: 528048 }
+        console.log("2: ", xdkDeviceData);
 
         if (xdkDeviceData) {
             res.status(200).send('xdkDeviceData received.');
