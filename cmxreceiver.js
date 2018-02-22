@@ -88,18 +88,22 @@ mongodb.MongoClient.connect(process.env.MONGODB_URI, function (err, database) {
         if (req.body.secret == secret) {
             console.log("Secret verified - saving wifiDevicesData... ");
             let document = {
-                "type": "rawData",
-                "data": req.body
+                "date": Date.now(),
+                "data": {
+                    "type": req.body.type,
+                    "apMac": req.body.data.apMac,
+                    "observations": req.body.data.observations
+                }
             };
             // cmxData(data);
-            db.collection('wifiDevices').insertOne( document , function(err, doc) {
-                if (err) {
-                    console.log('ERROR: Failed to save new wifiDevicesData');
-                } else {
-                    console.log('Saved cmxreceiver input to DB');
-                  // res.status(201).json(doc.ops[0]);
-                }
-            });
+            // db.collection('wifiDevices').insertOne( document , function(err, doc) {
+            //     if (err) {
+            //         console.log('ERROR: Failed to save new wifiDevicesData');
+            //     } else {
+            //         console.log('Saved cmxreceiver input to DB');
+            //       // res.status(201).json(doc.ops[0]);
+            //     }
+            // });
 
         } else {
             console.log("Secret was invalid");
