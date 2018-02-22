@@ -94,7 +94,7 @@ mongodb.MongoClient.connect(process.env.MONGODB_URI, function (err, database) {
 
             for (var i = 0; i < receivedDataArray.length; i++) {
                 let curObject = receivedDataArray[i];
-                console.log('curObject ', curObject);
+                console.log('curObject ', curObject.location);
 
             //     for(var j = 0; j < receivedDataArray.length; j++) {
 
