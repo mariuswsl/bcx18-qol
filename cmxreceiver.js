@@ -88,36 +88,31 @@ mongodb.MongoClient.connect(process.env.MONGODB_URI, function (err, database) {
         if (req.body.secret == secret) {
 
             let receivedDataArray           = req.body.data.observations,
-                newReceivedDataArray        = [],
                 checkedReceivedDataArray    = [];
+
             console.log("receivedDataArray.length: ", receivedDataArray.length);
 
-            for(object in receivedDataArray) {
-                console.log('object.location.unc: ', object);
-                // if(object.location.unc) newReceivedDataArray.push(object);
-            }
-            console.log("newReceivedDataArray.length: ", newReceivedDataArray.length);
+            for (var i = 0; i < receivedDataArray.length; i++) {
+                let curObject = receivedDataArray[i];
+                console.log('curObject ', curObject);
 
-            // for (var i = 0; i < newReceivedDataArray.length; i++) {
-            //     let curObject = newReceivedDataArray[i];
+            //     for(var j = 0; j < receivedDataArray.length; j++) {
 
-            //     for(var j = 0; j < newReceivedDataArray.length; j++) {
+            //         if (curObject.location.unc !== null && receivedDataArray[j].location.unc !== null) {
 
-            //         if (curObject.location.unc !== null && newReceivedDataArray[j].location.unc !== null) {
-
-            //             if (curObject.clientMac === newReceivedDataArray[j].clientMac && curObject.location.unc <= newReceivedDataArray[j].location.unc) {
-            //                 newReceivedDataArray.splice(j,1);
+            //             if (curObject.clientMac === receivedDataArray[j].clientMac && curObject.location.unc <= receivedDataArray[j].location.unc) {
+            //                 receivedDataArray.splice(j,1);
             //                 checkedReceivedDataArray.push(curObject);
             //                 break;
             //             } else {
-            //                 checkedReceivedDataArray.push(newReceivedDataArray[j]);
+            //                 checkedReceivedDataArray.push(receivedDataArray[j]);
             //                 break;
             //             }
 
-            //             if (j === newReceivedDataArray.length-1) checkedReceivedDataArray.push(curObject);
+            //             if (j === receivedDataArray.length-1) checkedReceivedDataArray.push(curObject);
             //         }
             //     }
-            // }
+            }
 
             console.log("checkedReceivedDataArray.length: ", checkedReceivedDataArray.length);
 
