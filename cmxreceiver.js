@@ -86,6 +86,30 @@ mongodb.MongoClient.connect(process.env.MONGODB_URI, function (err, database) {
 
 
         if (req.body.secret == secret) {
+
+            let receivedDataArray           = req.body.data.data.observations,
+                checkedReceivedDataArray    = [];
+            console.log("receivedDataArray.length: ", receivedDataArray.length);
+
+            for (var i = 0; i < receivedDataArray.length; i++) {
+                let curObject = receivedDataArray[i];
+
+                for(var j = 0; j < receivedDataArray.length; j++) {
+                    if (curObject.clientMac === receivedDataArray[j].clientMac && curObject.location.unc <= receivedDataArray[j].location.unc) {
+                        checkedReceivedDataArray.add(curObject);
+                    } else {
+                        checkedReceivedDataArray.add(receivedDataArray[j]);
+                    }
+
+                    if (j === receivedDataArray.length-1) checkedReceivedDataArray.add(curObject);
+                }
+            }
+
+            console.log("checkedReceivedDataArray.length: ", checkedReceivedDataArray.length);
+
+
+
+
             console.log("Secret verified - saving wifiDevicesData... ");
             let document = {
                 "date": Date.now(),
