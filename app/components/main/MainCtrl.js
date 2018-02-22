@@ -38,11 +38,12 @@ function MainCtrl($scope, $compile, $log, $uibModal, $rootScope, $window, MainSe
 
           // Meraki
           let data                   = result.data;
-              // lastReceivedObject     = data.pop(),
-              // lastReceivedObjectData = lastReceivedObject.data;
-              // devicesCount           = lastReceivedObjectData.observations.length;
+              lastReceivedObject     = data.pop(),
+              lastReceivedObjectData = lastReceivedObject.data;
 
-          // $scope.devicesCount = devicesCount;
+          $scope.humidity = lastReceivedObjectData.bme280_hum;
+          $scope.pressure = lastReceivedObjectData.bme280_press;
+          $scope.temperature = lastReceivedObjectData.bme280_temp;
 
         },
         function (error) {
