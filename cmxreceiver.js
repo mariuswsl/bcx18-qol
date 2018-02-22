@@ -95,6 +95,8 @@ mongodb.MongoClient.connect(process.env.MONGODB_URI, function (err, database) {
                 let curObject = receivedDataArray[i];
 
                 for(var j = 0; j < receivedDataArray.length; j++) {
+                    console.log('curObject.location.unc: ', curObject.location.unc);
+                    console.log('receivedDataArray[' + j + '].location.unc: ', receivedDataArray[j].location.unc);
                     if (curObject.clientMac === receivedDataArray[j].clientMac && curObject.location.unc <= receivedDataArray[j].location.unc) {
                         checkedReceivedDataArray.push(curObject);
                     } else {
