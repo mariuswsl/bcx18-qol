@@ -142,7 +142,7 @@ mongodb.MongoClient.connect(process.env.MONGODB_URI, function (err, database) {
                     console.log('ERROR: Failed to save new xdkDeviceData');
                 } else {
                     console.log('Saved xdkDeviceData input to DB');
-                    res.status(200).send('xdkDeviceData saved into DB.');
+                    res.status(200);
                 }
             });
         }

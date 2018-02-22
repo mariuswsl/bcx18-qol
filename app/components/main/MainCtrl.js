@@ -44,7 +44,6 @@ function MainCtrl($scope, $compile, $log, $uibModal, $rootScope, $window, MainSe
           $scope.humidity    = lastReceivedObjectData.bme280_hum;
           $scope.pressure    = lastReceivedObjectData.bme280_press;
           $scope.temperature = lastReceivedObjectData.bme280_temp;
-          $log.debug($scope.temperature);
 
         },
         function (error) {
