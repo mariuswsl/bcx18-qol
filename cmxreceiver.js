@@ -89,7 +89,7 @@ mongodb.MongoClient.connect(process.env.MONGODB_URI, function (err, database) {
 
 
         if (req.body.secret == secret) {
-            console.log("Secret verified with req.body.data: ", req.body);
+            console.log("Secret verified - saving wifiDevicesData... ");
             let document = {
                 "date": Date.now(),
                 "data": {
@@ -134,8 +134,6 @@ mongodb.MongoClient.connect(process.env.MONGODB_URI, function (err, database) {
     });
 
     app.post("/xdkDevice/", function (req, res) {
-        console.log("Got xdkDeviceData: ");
-        console.log(req);
         console.log("Got xdkDeviceData with body: ");
         console.log(req.body);
         res.status(200).send('Merci, du Mieses...');
