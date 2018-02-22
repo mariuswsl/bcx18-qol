@@ -94,9 +94,11 @@ mongodb.MongoClient.connect(process.env.MONGODB_URI, function (err, database) {
 
             for (var i = 0; i < receivedDataArray.length; i++) {
                 let curObject = receivedDataArray[i];
-                console.log('curObject ', curObject.location.unc);
+                if (curObject.location.unc) {
+                    console.log('curObject ', curObject.location.unc);
+                }
 
-            //     for(var j = 0; j < receivedDataArray.length; j++) {
+                // for(var j = 0; j < receivedDataArray.length; j++) {
 
             //         if (curObject.location.unc !== null && receivedDataArray[j].location.unc !== null) {
 
@@ -111,7 +113,7 @@ mongodb.MongoClient.connect(process.env.MONGODB_URI, function (err, database) {
 
             //             if (j === receivedDataArray.length-1) checkedReceivedDataArray.push(curObject);
             //         }
-            //     }
+                // }
             }
 
             console.log("checkedReceivedDataArray.length: ", checkedReceivedDataArray.length);
