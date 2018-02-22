@@ -94,9 +94,9 @@ mongodb.MongoClient.connect(process.env.MONGODB_URI, function (err, database) {
 
             for (var i = 0; i < receivedDataArray.length; i++) {
                 let curObject = receivedDataArray[i];
-                if(curObject.location['unc'] != null) {
-                    console.log('curObject.location ', curObject.location);
-                }
+                // if(curObject.location.length != null) {
+                    console.log('curObject.location.length ', curObject.location.length);
+                // }
 
                 // for(var j = 0; j < receivedDataArray.length; j++) {
 
