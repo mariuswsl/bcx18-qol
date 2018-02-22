@@ -97,10 +97,9 @@ mongodb.MongoClient.connect(process.env.MONGODB_URI, function (err, database) {
 
                 for(var j = 0; j < receivedDataArray.length; j++) {
 
-                    if (curObject.location['unc'] != null && receivedDataArray[j].location['unc'] != null) {
+                    if (curObject.location['unc'] !== null && receivedDataArray[j].location['unc'] !== null) {
 
                         if (curObject.clientMac === receivedDataArray[j].clientMac && curObject.location.unc <= receivedDataArray[j].location.unc) {
-                            receivedDataArray.splice(j,1);
                             checkedReceivedDataArray.push(curObject);
                             break;
                         } else {
@@ -136,6 +135,7 @@ mongodb.MongoClient.connect(process.env.MONGODB_URI, function (err, database) {
             //       // res.status(201).json(doc.ops[0]);
             //     }
             // });
+                  res.status(201);
 
         } else {
             console.log("Secret was invalid");
