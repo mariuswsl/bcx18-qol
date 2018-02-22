@@ -87,7 +87,7 @@ mongodb.MongoClient.connect(process.env.MONGODB_URI, function (err, database) {
 
         if (req.body.secret == secret) {
 
-            let receivedDataArray           = req.body.data.data.observations,
+            let receivedDataArray           = req.body.data.observations,
                 checkedReceivedDataArray    = [];
             console.log("receivedDataArray.length: ", receivedDataArray.length);
 
