@@ -94,7 +94,7 @@ mongodb.MongoClient.connect(process.env.MONGODB_URI, function (err, database) {
 
             for(object in receivedDataArray) {
                 console.log('object.location.unc: ', object.location);
-                if(object.location.unc) newReceivedDataArray.push(object);
+                // if(object.location.unc) newReceivedDataArray.push(object);
             }
             console.log("newReceivedDataArray.length: ", newReceivedDataArray.length);
 
