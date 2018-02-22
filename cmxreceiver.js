@@ -87,42 +87,6 @@ mongodb.MongoClient.connect(process.env.MONGODB_URI, function (err, database) {
 
         if (req.body.secret == secret) {
 
-            let receivedDataArray           = req.body.data.observations,
-                checkedReceivedDataArray    = [];
-
-            console.log("receivedDataArray.length: ", receivedDataArray.length);
-
-            for(var i in receivedDataArray){
-              console.log('key: ', i); // alerts key
-              console.log(receivedDataArray[i]); //alerts key's value
-            }
-
-            for (var i = 0; i < receivedDataArray.length; i++) {
-
-                // for(var j = 0; j < receivedDataArray.length; j++) {
-
-                    // if (curObject.location['unc'] === null ) {
-                    //     // && receivedDataArray[j].location['unc'] === null
-                    //     console.log('curObject.location ', curObject.location);
-                    //     console.log('receivedDataArray[j].location ', receivedDataArray[j].location);
-
-                        // if (curObject.clientMac === receivedDataArray[j].clientMac && curObject.location.unc <= receivedDataArray[j].location.unc) {
-                        //     checkedReceivedDataArray.push(curObject);
-                        //     break;
-                        // } else {
-                        //     checkedReceivedDataArray.push(receivedDataArray[j]);
-                        //     break;
-                        // }
-
-                        // if (j === receivedDataArray.length-1) checkedReceivedDataArray.push(curObject);
-                    // }
-            }
-
-            console.log("checkedReceivedDataArray.length: ", checkedReceivedDataArray.length);
-
-
-
-
             console.log("Secret verified - saving wifiDevicesData... ");
             let document = {
                 "date": Date.now(),
@@ -132,16 +96,15 @@ mongodb.MongoClient.connect(process.env.MONGODB_URI, function (err, database) {
                     "observations": req.body.data.observations
                 }
             };
-            // cmxData(data);
-            // db.collection('wifiDevices').insertOne( document , function(err, doc) {
-            //     if (err) {
-            //         console.log('ERROR: Failed to save new wifiDevicesData');
-            //     } else {
-            //         console.log('Saved cmxreceiver input to DB');
-            //       // res.status(201).json(doc.ops[0]);
-            //     }
-            // });
+            cmxData(data);
+            db.collection('wifiDevices').insertOne( document , function(err, doc) {
+                if (err) {
+                    console.log('ERROR: Failed to save new wifiDevicesData');
+                } else {
+                    console.log('Saved cmxreceiver input to DB');
                   res.status(201);
+                }
+            });
 
         } else {
             console.log("Secret was invalid");
