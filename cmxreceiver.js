@@ -96,7 +96,7 @@ mongodb.MongoClient.connect(process.env.MONGODB_URI, function (err, database) {
 
                 for(var j = 0; j < receivedDataArray.length; j++) {
 
-                    if (curObject.location.unc && receivedDataArray[j].location.unc) {
+                    if (curObject.location.unc != null && receivedDataArray[j].location.unc != null) {
 
                         if (curObject.clientMac === receivedDataArray[j].clientMac && curObject.location.unc <= receivedDataArray[j].location.unc) {
                             receivedDataArray.splice(j,1);
