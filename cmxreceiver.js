@@ -97,17 +97,20 @@ mongodb.MongoClient.connect(process.env.MONGODB_URI, function (err, database) {
 
                 for(var j = 0; j < receivedDataArray.length; j++) {
 
-                    if (curObject.location['unc'] !== null && receivedDataArray[j].location['unc'] !== null) {
+                    if (curObject.location['unc'] === null && receivedDataArray[j].location['unc'] === null) {
 
-                        if (curObject.clientMac === receivedDataArray[j].clientMac && curObject.location.unc <= receivedDataArray[j].location.unc) {
-                            checkedReceivedDataArray.push(curObject);
-                            break;
-                        } else {
-                            checkedReceivedDataArray.push(receivedDataArray[j]);
-                            break;
-                        }
+                        console.log('curObject.location ', curObject.location);
+                        console.log('receivedDataArray[j].location ', receivedDataArray[j].location);
 
-                        if (j === receivedDataArray.length-1) checkedReceivedDataArray.push(curObject);
+                        // if (curObject.clientMac === receivedDataArray[j].clientMac && curObject.location.unc <= receivedDataArray[j].location.unc) {
+                        //     checkedReceivedDataArray.push(curObject);
+                        //     break;
+                        // } else {
+                        //     checkedReceivedDataArray.push(receivedDataArray[j]);
+                        //     break;
+                        // }
+
+                        // if (j === receivedDataArray.length-1) checkedReceivedDataArray.push(curObject);
                     }
                 }
             }
