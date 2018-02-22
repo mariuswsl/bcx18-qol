@@ -43,7 +43,7 @@ app.use(bodyParser.urlencoded({
     extended: true
 }));
 app.use(bodyParser.json());
-// app.use(bodyParser({limit: '50mb'}));
+app.use(bodyParser({limit: '50mb'}));
 
 
 
@@ -134,26 +134,26 @@ mongodb.MongoClient.connect(process.env.MONGODB_URI, function (err, database) {
     });
 
     app.post("/xdkDevice/", function (req, res) {
-        console.log("Got xdkDeviceData with body: ");
-        console.log(req.body);
-        res.status(200).send('Merci, du Mieses...');
-            // let document = {
-            //     "date": Date.now(),
-            //     "data": {
-            //         "type": req.body.type,
-            //         "apMac": req.body.data.apMac,
-            //         "observations": req.body.data.observations
-            //     }
-            // };
-            // cmxData(data);
-            // db.collection('wifiDevices').insertOne( document , function(err, doc) {
-            //     if (err) {
-            //         console.log('ERROR: Failed to save new wifiDevicesData');
-            //     } else {
-            //         console.log('Saved cmxreceiver input to DB');
-            //       // res.status(201).json(doc.ops[0]);
-            //     }
-            // });
+        console.log("Got xdkDeviceData with body: ", req.body);
+        let xdkDeviceData = JSON.parse(req.body); // {e.g. bme280_hum: 22206, bme280_press: 290536, bme280_temp: 528048 }
+
+        if (xdkDeviceData) {
+            res.status(200).send('xdkDeviceData received.');
+            let document = {
+                "date": Date.now(),
+                "data": xdkDeviceData
+            };
+
+            db.collection('xdkDeviceData').insertOne( document , function(err, doc) {
+                if (err) {
+                    console.log('ERROR: Failed to save new wifiDevicesData');
+                } else {
+                    console.log('Saved cmxreceiver input to DB');
+                    res.status(200).json(doc.ops[0]);
+                }
+            });
+        }
+
     });
 
 
