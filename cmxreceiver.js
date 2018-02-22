@@ -97,8 +97,8 @@ mongodb.MongoClient.connect(process.env.MONGODB_URI, function (err, database) {
 
                 for(var j = 0; j < receivedDataArray.length; j++) {
 
-                    if (curObject.location['unc'] === null && receivedDataArray[j].location['unc'] === null) {
-
+                    if (curObject.location['unc'] === null ) {
+                        // && receivedDataArray[j].location['unc'] === null
                         console.log('curObject.location ', curObject.location);
                         console.log('receivedDataArray[j].location ', receivedDataArray[j].location);
 
