@@ -100,8 +100,10 @@ mongodb.MongoClient.connect(process.env.MONGODB_URI, function (err, database) {
 
                         if (curObject.clientMac === receivedDataArray[j].clientMac && curObject.location.unc <= receivedDataArray[j].location.unc) {
                             checkedReceivedDataArray.push(curObject);
+                            break;
                         } else {
                             checkedReceivedDataArray.push(receivedDataArray[j]);
+                            break;
                         }
 
                         if (j === receivedDataArray.length-1) checkedReceivedDataArray.push(curObject);
