@@ -98,26 +98,26 @@ mongodb.MongoClient.connect(process.env.MONGODB_URI, function (err, database) {
             }
             console.log("newReceivedDataArray.length: ", newReceivedDataArray.length);
 
-            for (var i = 0; i < newReceivedDataArray.length; i++) {
-                let curObject = newReceivedDataArray[i];
+            // for (var i = 0; i < newReceivedDataArray.length; i++) {
+            //     let curObject = newReceivedDataArray[i];
 
-                for(var j = 0; j < newReceivedDataArray.length; j++) {
+            //     for(var j = 0; j < newReceivedDataArray.length; j++) {
 
-                    if (curObject.location.unc !== null && newReceivedDataArray[j].location.unc !== null) {
+            //         if (curObject.location.unc !== null && newReceivedDataArray[j].location.unc !== null) {
 
-                        if (curObject.clientMac === newReceivedDataArray[j].clientMac && curObject.location.unc <= newReceivedDataArray[j].location.unc) {
-                            newReceivedDataArray.splice(j,1);
-                            checkedReceivedDataArray.push(curObject);
-                            break;
-                        } else {
-                            checkedReceivedDataArray.push(newReceivedDataArray[j]);
-                            break;
-                        }
+            //             if (curObject.clientMac === newReceivedDataArray[j].clientMac && curObject.location.unc <= newReceivedDataArray[j].location.unc) {
+            //                 newReceivedDataArray.splice(j,1);
+            //                 checkedReceivedDataArray.push(curObject);
+            //                 break;
+            //             } else {
+            //                 checkedReceivedDataArray.push(newReceivedDataArray[j]);
+            //                 break;
+            //             }
 
-                        if (j === newReceivedDataArray.length-1) checkedReceivedDataArray.push(curObject);
-                    }
-                }
-            }
+            //             if (j === newReceivedDataArray.length-1) checkedReceivedDataArray.push(curObject);
+            //         }
+            //     }
+            // }
 
             console.log("checkedReceivedDataArray.length: ", checkedReceivedDataArray.length);
 
